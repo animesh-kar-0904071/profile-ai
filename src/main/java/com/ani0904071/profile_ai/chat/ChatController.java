@@ -52,10 +52,10 @@ public class ChatController {
     }
 
     @PostMapping(value = "/chat/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-        public Flux<String> chatStream(@Valid @RequestBody ChatRequest request) {
-            return chatClient.prompt()
-                .user(request.message())
-                .stream()
-                .content();
-        }
+    public Flux<String> chatStream(@Valid @RequestBody ChatRequest request) {
+        return chatClient.prompt()
+            .user(request.message())
+            .stream()
+            .content();
+    }
 }
