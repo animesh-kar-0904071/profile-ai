@@ -11,7 +11,7 @@ This repository is the **backend** (Spring Boot). The Angular frontend will live
 
 ## Features
 - [x] `/api/chat` endpoint backed by Gemini
-- [ ] Streaming replies (Server-Sent Events)
+- [x] Streaming replies (Server-Sent Events)
 - [ ] Rate limiting and error handling
 - [ ] Profile data and chat history in MySQL
 - [ ] Tools (project lookup, send me a message)
