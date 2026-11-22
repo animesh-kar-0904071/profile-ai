@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #666;
+  --card: #f5f6f8;
+  --border: #e2e4e8;
+  --me: #0b57d0;
+  --error: #c62828;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121316;
+    --fg: #e8e8ea;
+    --muted: #9a9aa2;
+    --card: #1c1d22;
+    --border: #2c2e35;
+    --me: #2f5fd0;
+    --error: #ff7b7b;
+  }
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}

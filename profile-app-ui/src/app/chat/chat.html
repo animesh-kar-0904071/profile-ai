@@ -1,0 +1,36 @@
+<section class="chat">
+  <div class="log" #log>
+    @if (messages().length === 0) {
+      <p class="hint">Ask me anything about Animesh's work, skills or interests.</p>
+      <div class="chips">
+        @for (q of suggestions; track q) {
+          <button type="button" (click)="ask(q)">{{ q }}</button>
+        }
+      </div>
+    }
+
+    @for (m of messages(); track $index) {
+      <div class="msg" [class.me]="m.role === 'user'" [class.bot]="m.role === 'bot'" [class.error]="m.error">
+        @if (m.role === 'bot' && !m.text && busy()) {
+          <span class="typing">Thinking…</span>
+        } @else {
+          {{ m.text }}
+        }
+      </div>
+    }
+  </div>
+
+  <div class="composer">
+    <input
+      #box
+      type="text"
+      maxlength="500"
+      placeholder="Ask about Animesh…"
+      aria-label="Your question"
+      [value]="draft()"
+      (input)="draft.set(box.value)"
+      (keydown.enter)="send()"
+    />
+    <button type="button" (click)="send()" [disabled]="busy() || !draft().trim()">Send</button>
+  </div>
+</section>
