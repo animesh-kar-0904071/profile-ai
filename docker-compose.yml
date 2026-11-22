@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./profile-ai
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY:?Set GEMINI_API_KEY first}
+    expose:
+      - "8080"
+    restart: unless-stopped
+
+  frontend:
+    build: ./profile-app-ui
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
