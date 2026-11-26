@@ -5,6 +5,12 @@ services:
       GEMINI_API_KEY: ${GEMINI_API_KEY:?Set GEMINI_API_KEY first}
     expose:
       - "8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "/dev/null", "http://127.0.0.1:8080/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     restart: unless-stopped
 
   frontend:
@@ -12,5 +18,11 @@ services:
     ports:
       - "8081:8080"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "/dev/null", "http://127.0.0.1:8080/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
     restart: unless-stopped
